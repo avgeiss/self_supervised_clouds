@@ -113,3 +113,9 @@ def pretrained(input_width,cnn_name):
     x = cnn(x)
     x = GlobalAveragePooling2D()(x)
     return Model(xin,x)
+
+def testing_network(encoder, input_width, n_classes):
+    xin = Input((input_width,input_width,1))
+    x = encoder(xin)
+    x = Dense(n_classes,activation='softmax')(x)
+    return Model(xin,x)
